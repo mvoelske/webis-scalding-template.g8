@@ -16,4 +16,14 @@ else
   sbt package
 fi
 
-HADOOP_CLASSPATH="$HADOOP_CLASSPATH:$DEPJAR" hadoop jar $JOBJAR -libjars $HDFS_DEPJAR -- $@
+if [[ "$1" == "hdfs" ]]; then
+  LIBJAR="$HDFS_DEPJAR"
+  PARAM="--hdfs"
+  shift
+else
+  LIBJAR="$DEPJAR"
+  PARAM="--local"
+fi
+
+
+HADOOP_CLASSPATH="$HADOOP_CLASSPATH:$DEPJAR" hadoop jar $JOBJAR -libjars $LIBJAR -- $@ $PARAM

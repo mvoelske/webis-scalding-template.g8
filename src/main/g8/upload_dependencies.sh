@@ -3,6 +3,8 @@
 # Prerequisite: sbt assembly plugin
 # TODO: turn this into an sbt plugin some day
 
+set -e
+
 tmpdir=target/dependencies-$RANDOM
 project_name=$( grep "^ *name *:=" build.sbt | sed 's/^[^"]*"\([^"]*\)".*$/\1/' )
 assembly_jar=$( readlink -m target/${project_name}-assembly.jar )
