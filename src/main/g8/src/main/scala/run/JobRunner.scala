@@ -1,3 +1,5 @@
+package run
+
 import org.apache.hadoop
 import com.twitter.scalding.Tool
 
